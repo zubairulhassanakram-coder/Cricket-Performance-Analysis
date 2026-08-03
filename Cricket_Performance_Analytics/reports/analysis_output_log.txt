@@ -1,0 +1,249 @@
+######################################################################
+STEP 5: EXPLORATORY DATA ANALYSIS (EDA)
+######################################################################
+
+--- 5.1 DATASET SUMMARY ---
+Total deliveries (rows): 15164
+Total matches: 66
+Total teams: 6
+Total unique batters: 157
+Total unique bowlers: 106
+Total venues: 6
+Seasons covered: [np.int64(2020), np.int64(2021)]
+Date range: 2020-02-20 to 2021-06-24
+
+--- 5.2 DESCRIPTIVE STATISTICS (numeric columns) ---
+       batsman_runs    total_runs    extra_runs          over          ball
+count  15164.000000  15164.000000  15164.000000  15164.000000  15164.000000
+mean       1.318715      1.388288      0.069573      9.983514      3.621604
+std        1.686907      1.673426      0.355064      5.628464      1.814317
+min        0.000000      0.000000      0.000000      1.000000      1.000000
+25%        0.000000      0.000000      0.000000      5.000000      2.000000
+50%        1.000000      1.000000      0.000000     10.000000      4.000000
+75%        1.000000      1.000000      0.000000     15.000000      5.000000
+max        6.000000      7.000000      5.000000     20.000000     10.000000
+
+######################################################################
+STEP 6: STATISTICAL ANALYSIS
+######################################################################
+
+Column: batsman_runs
+  Mean     : 1.3187
+  Median   : 1.0000
+  Mode     : 0
+  Std Dev  : 1.6869
+  Variance : 2.8457
+  Skewness : 1.4852
+  Kurtosis : 1.1867
+
+Column: total_runs
+  Mean     : 1.3883
+  Median   : 1.0000
+  Mode     : 1
+  Std Dev  : 1.6734
+  Variance : 2.8004
+  Skewness : 1.4590
+  Kurtosis : 1.1425
+
+Correlation matrix:
+              batsman_runs  total_runs  extra_runs  ...   ball  dot_ball  boundary
+batsman_runs         1.000       0.978      -0.143  ... -0.012    -0.559     0.911
+total_runs           0.978       1.000       0.068  ... -0.013    -0.594     0.900
+extra_runs          -0.143       0.068       1.000  ... -0.007    -0.140    -0.084
+is_wicket           -0.180      -0.190      -0.043  ...  0.013     0.313    -0.110
+over                 0.078       0.082       0.016  ... -0.005    -0.124     0.021
+ball                -0.012      -0.013      -0.007  ...  1.000     0.009    -0.011
+dot_ball            -0.559      -0.594      -0.140  ...  0.009     1.000    -0.334
+boundary             0.911       0.900      -0.084  ... -0.011    -0.334     1.000
+
+[8 rows x 8 columns]
+
+Covariance(batsman_runs, is_wicket): -0.0675
+
+--- 5.3 CATEGORICAL ANALYSIS: Teams ---
+batting_team
+Multan Sultans       2666
+Karachi Kings        2629
+Lahore Qalandars     2627
+Peshawar Zalmi       2620
+Islamabad United     2384
+Quetta Gladiators    2238
+Name: count, dtype: int64
+
+--- 5.4 VENUE ANALYSIS ---
+venue
+National Stadium                   25
+Sheikh Zayed Stadium, Abu Dhabi    20
+Gaddafi Stadium                    10
+Rawalpindi Cricket Stadium          7
+Multan Cricket Stadium              3
+National Stadium, Karachi           1
+Name: match_id, dtype: int64
+
+--- 5.5 SEASON ANALYSIS: Runs per season ---
+season
+2020     9899
+2021    11153
+Name: total_runs, dtype: int64
+
+--- 5.6 PLAYER ANALYSIS: Top 10 run scorers ---
+batter
+Babar Azam         1027
+Shoaib Malik        632
+Fakhar Zaman        612
+Mohammad Hafeez     583
+Sharjeel Khan       555
+Kamran Akmal        534
+C Munro             533
+Mohammad Rizwan     500
+Shan Masood         492
+Sarfraz Ahmed       469
+Name: batsman_runs, dtype: int64
+
+--- 5.7 PLAYER ANALYSIS: Top 10 wicket takers ---
+bowler_clean
+Shaheen Shah Afridi    36
+Wahab Riaz             30
+Sohail Tanvir          27
+Mohammad Hasnain       26
+Imran Tahir            25
+Hasan Ali              24
+Arshad Iqbal           20
+Shahnawaz Dhani        20
+Haris Rauf             20
+Mohammad Amir          19
+Name: is_wicket, dtype: int64
+
+--- 5.8 TEAM ANALYSIS: Match wins ---
+winner
+Multan Sultans       13
+Lahore Qalandars     12
+Karachi Kings        11
+Peshawar Zalmi       11
+Islamabad United     11
+Quetta Gladiators     6
+No result             2
+Name: count, dtype: int64
+
+--- 5.9 POWERPLAY / MIDDLE / DEATH OVER ANALYSIS ---
+Runs per phase:
+ match_phase
+Death Overs     5259
+Middle Overs    9456
+Powerplay       6337
+Name: total_runs, dtype: int64
+Wickets per phase:
+ match_phase
+Death Overs     253
+Middle Overs    330
+Powerplay       210
+Name: is_wicket, dtype: int64
+Run-rate per phase:
+ match_phase
+Death Overs     9.77
+Middle Overs    8.11
+Powerplay       7.70
+dtype: float64
+
+--- 5.10 BOUNDARY ANALYSIS ---
+Total fours: 1887  | Total sixes: 827
+Top 10 boundary hitters:
+batter
+Babar Azam         128
+Sharjeel Khan       88
+Kamran Akmal        87
+Fakhar Zaman        83
+C Munro             81
+Shoaib Malik        81
+Mohammad Hafeez     75
+Mohammad Rizwan     66
+Shan Masood         64
+Sohaib Maqsood      63
+Name: boundary, dtype: int64
+
+--- 5.11 PLAYER OF THE MATCH ANALYSIS ---
+player_of_match
+Babar Azam       4
+Hazratullah      3
+Shadab Khan      2
+Sohail Tanvir    2
+L Gregory        2
+RR Rossouw       2
+AD Hales         2
+BR Dunk          2
+C Munro          2
+Fakhar Zaman     2
+Name: count, dtype: int64
+
+--- 5.12 MATCH TYPE ANALYSIS ---
+match_type
+regular       58
+eliminator     4
+qualifier      2
+final          2
+Name: count, dtype: int64
+
+--- 5.13 TIME-SERIES: Matches per month ---
+month
+2020-02    12
+2020-03    16
+2020-11     4
+2021-02    11
+2021-03     3
+2021-06    20
+Name: match_id, dtype: int64
+
+######################################################################
+STEP 7: GENERATING 20 VISUALIZATIONS
+######################################################################
+/home/claude/Cricket_Performance_Analytics/src/03_eda_statistics_visuals.py:175: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=team_runs.values, y=team_runs.index, palette=TEAM_PALETTE)
+/home/claude/Cricket_Performance_Analytics/src/03_eda_statistics_visuals.py:185: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=team_wins.values, y=team_wins.index, palette=TEAM_PALETTE)
+/home/claude/Cricket_Performance_Analytics/src/03_eda_statistics_visuals.py:227: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=team_wickets.values, y=team_wickets.index, palette="Set2")
+/home/claude/Cricket_Performance_Analytics/src/03_eda_statistics_visuals.py:236: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=venue_matches.values, y=venue_matches.index, palette="crest")
+/home/claude/Cricket_Performance_Analytics/src/03_eda_statistics_visuals.py:247: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=venue_avg_runs.values, y=venue_avg_runs.index, palette="mako")
+/home/claude/Cricket_Performance_Analytics/src/03_eda_statistics_visuals.py:287: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=phase_order, y=[phase_runs[p] for p in phase_order],
+/home/claude/Cricket_Performance_Analytics/src/03_eda_statistics_visuals.py:335: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(data=overs_summary, x="match_phase", y="total_runs", order=phase_order,
+/home/claude/Cricket_Performance_Analytics/src/03_eda_statistics_visuals.py:346: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.violinplot(data=overs_summary, x="match_phase", y="total_runs", order=phase_order,
+
+All 20 visualizations saved successfully to ../images/
+
+Season summary table:
+   season  total_runs  total_wickets  total_sixes  total_fours
+0    2020        9899            375          387          875
+1    2021       11153            418          440         1012
+
+######################################################################
+EDA, STATISTICAL ANALYSIS AND VISUALIZATION SCRIPT COMPLETE
+######################################################################
