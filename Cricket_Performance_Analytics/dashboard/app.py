@@ -6,7 +6,7 @@ PSL 2020-2021 Ball-by-Ball Data
 Run with:
     streamlit run app.py
 """
-%%pip install matplotlib, pandas, seaborn
+# %%pip install matplotlib, pandas, seaborn
 
 import pandas as pd
 import numpy as np
